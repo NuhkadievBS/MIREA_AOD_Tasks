@@ -1,11 +1,13 @@
 package hashing;
 
+// Класс, описывающий логику книги
 public class Book {
-    private long ISBN;
-    private String author;
-    private String name;
+    private final Long ISBN; // ID книги, который выступает ключом в таблице
+    private final String author; // Автор книги
+    private final String name; // Название книги
 
-    public Book(long ISBN, String author, String name) {
+    // Инициализация значений в конструкторе
+    public Book(Long ISBN, String author, String name) {
         this.ISBN = ISBN;
         this.author = author;
         this.name = name;
@@ -18,5 +20,9 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public Long getISBN() {
+        return ISBN;
     }
 }

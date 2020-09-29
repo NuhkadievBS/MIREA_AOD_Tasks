@@ -1,38 +1,78 @@
 package hashing;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class HashTable {
-    ArrayList<Book> books = new ArrayList<>();
+    private final int MAXSIZE = 10; // Начальный размер таблицы
+    private LinkedList<Book>[] books = new LinkedList[MAXSIZE]; // Инициализация таблицы
 
-    // insert
-    public void add(Book x) {
-        books.add(x);
-    }
-    // remove
-    public void remove(int index, Book x) {
-    }
-    // find
-    public int find(Book x) {
-        try {
-            return hash(x);
-        }
-        catch (IndexOutOfBoundsException e) {
-            return -1;
+    public HashTable() {
+        for (int i = 0; i < MAXSIZE; i++) {
+            books[i] = null;
         }
     }
-    // print
+
+    //Метод добавления элемента в таблицу
+    public void add(Book valueToAdd) {
+
+        int hash = calcHashValue(valueToAdd.getISBN()); // Высчитываем хеш-функцией индекс в таблице
+        // Инициализируем список при вычисленном индексе для элемента
+        if (books[hash] == null) {
+            books[hash] = new LinkedList<>();
+        }
+        System.out.println("Adding element at index: " + hash);
+
+        // Добавление в начало списка требуемого элемента. Это обспечивает константную сложность
+        books[hash].addFirst(valueToAdd);
+    }
+
+    // Хеш-функция, хеширование производится по модулю размера массива
+    private int calcHashValue(Long key) {
+        return (int) (long) (key % MAXSIZE);
+    }
+
+    // Метод вывода значений таблицы
     public void printOut() {
-        System.out.println('[');
-        for(Book x : books)
-            System.out.println(x);
-        System.out.println(']');
-
+        for (int i = 0; i < MAXSIZE; i++) {
+            if(books[i] != null) {
+                for (Object x : books[i]) {
+                    System.out.println("Value is at index " + i + ": " + x);
+                }
+            }
+        }
     }
 
-    // hash
-    public int hash(Book x) {
-        return 0;
+    // Метод удаления элемента из таблицы по ключу
+    public void removeValue(long key) {
+        int hash = calcHashValue(key);
+        if (books[hash] == null) { // Если список по индексу пуст, то искомого значения в таблице нет
+            System.out.println("No such value in table");
+            return;
+        }
+
+        // Проходим по списку по индексу, и ищем нужное значение
+        for(Book x : books[hash]) {
+            if(key == x.getISBN()) {
+                System.out.println("Removing " + x);
+                books[hash].remove(x); // Удаляем значение по данному ключу
+                return;
+            }
+        }
     }
+
+    // Метод поиска элемента в таблице по ключу
+    public Book search(long key) {
+        int hash = calcHashValue(key);
+        if (books[hash] != null) {
+
+            // Проходим по списку и ищем значение по ключу
+            for(Book x : books[hash]) {
+                if(x.getISBN() == key)
+                    return x;
+            }
+        }
+        return null;
+    }
+
+
 }
