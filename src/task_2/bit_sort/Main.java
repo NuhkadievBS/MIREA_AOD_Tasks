@@ -8,7 +8,7 @@ public class Main {
 //        Scanner scanner = new Scanner(System.in);
 
         // Путь к текстовому файлу
-        String fileName = "/Users/baga_nuhkadiev/IdeaProjects/AOD_2/src/task_2/files/numbers.txt";
+        String fileName = "/Users/baga_nuhkadiev/IdeaProjects/MIREA_AOD_Tasks/src/task_2/files/numbers.txt";
 
         // Генерация значений в диапазоне [1000000, 9999999],
         // таким образом возможно сгенерировать лишь 9000000 различных значений,
@@ -25,7 +25,7 @@ public class Main {
         // Записываем активированные эл-ты в файл, проходя по возрастанию индексов(таким образом сортируя)
         bitArray.writeSorted();
 
-        System.out.println("used time = " + (double) (System.currentTimeMillis() - m)); //вывод времени работы алгоритма
+        System.out.println("used time = " + (double) (System.currentTimeMillis() - m) + "ms"); //вывод времени работы алгоритма
         long usedBytes = Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 
     }

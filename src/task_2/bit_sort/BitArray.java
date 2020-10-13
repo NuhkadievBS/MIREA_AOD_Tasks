@@ -16,7 +16,7 @@ public class BitArray {
     //конструктор битового массива, инициализируем все элементы значением false
     public BitArray(String fileName) {
         this.fileName = fileName; // записываем путь до файла
-        for (int i = 0; i < 10000000; i++) {
+        for (int i = 0; i < 9000000; i++) {
             bitArray.add(false);
         }
     }
@@ -30,7 +30,7 @@ public class BitArray {
         // в цикле получаем индексы из файла и по индексам, равным им, записываем значение true
         while (scanner.hasNext()) {
             if (scanner.hasNextInt()) {
-                bitArray.set(scanner.nextInt(), true);
+                bitArray.set(scanner.nextInt() - 1000000, true);
             } else {
                 scanner.next();
             }
@@ -46,7 +46,7 @@ public class BitArray {
         // В цикле проходимся по битовому массиву и записываем в файл те индексы, чьи элементы равны true
         for (int i = 0; i < bitArray.size(); i++) {
             if (bitArray.get(i)) {
-                writer.write(String.valueOf(i));
+                writer.write(String.valueOf(i  + 1000000));
                 writer.write("\n");
             }
         }
