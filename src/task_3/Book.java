@@ -1,4 +1,4 @@
-package hashing;
+package task_3;
 
 // Класс, описывающий логику книги
 public class Book {

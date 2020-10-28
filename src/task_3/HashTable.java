@@ -1,4 +1,4 @@
-package hashing;
+package task_3;
 
 import java.util.LinkedList;
 
