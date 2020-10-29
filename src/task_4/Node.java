@@ -7,8 +7,12 @@ public class Node implements TreePrinter.PrintableNode {
 
     // The left and the right children of this node.
     public Node left, right;
+    public int height;
 
     public Node(String value) {
+        left = null;
+        right = null;
+        height = 1;
         this.value = value;
     }
 
