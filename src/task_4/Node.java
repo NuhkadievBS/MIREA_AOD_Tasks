@@ -12,7 +12,7 @@ public class Node implements TreePrinter.PrintableNode {
     public Node(String value) {
         left = null;
         right = null;
-        height = 1;
+        height = 0;
         this.value = value;
     }
 

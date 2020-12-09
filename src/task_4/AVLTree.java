@@ -1,5 +1,7 @@
 package task_4;
 
+import java.util.Scanner;
+
 public class AVLTree {
     Node root; // Корень дерева
 
@@ -101,6 +103,8 @@ public class AVLTree {
     }
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
         Node root = new Node("Moscow");
         AVLTree tree = new AVLTree();
         root = tree.insert(root, "Washington");
@@ -108,11 +112,11 @@ public class AVLTree {
         root = tree.insert(root, "Kyiv");
         root = tree.insert(root, "Saransk");
         root = tree.insert(root, "Paris");
-        root = tree.insert(root, "London");
+        root = tree.insert(root, scanner.nextLine());
         System.out.println(TreePrinter.getTreeDisplay(root));
 
         System.out.println("Высота дерева = " + tree.height(root));
-        System.out.println("Длина до узла = " + tree.pathLength(root, "Washington", 0));
+        System.out.println("Длина до узла = " + tree.pathLength(root, scanner.nextLine(), 0));
 
         System.out.println("\nОбратный обход дерева");
         tree.postOrder(root);
